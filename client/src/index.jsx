@@ -13,6 +13,10 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.fetch();
+  }
+
   search (term) {
     console.log(`${term} was searched`);
     // TODO
@@ -20,15 +24,15 @@ class App extends React.Component {
 
   }
 
-  //may need a callback here??
   send(data) {
     $.ajax({
       type: "POST",
       url: this.state.server + "/repos",
       data: JSON.stringify(data),
       contentType: "application/json",
-      success: function(response) {
+      success: (response) => {
         console.log(response)
+        this.fetch();
       },
       fail: function(err) {
         console.error(err);
@@ -41,8 +45,10 @@ class App extends React.Component {
       type: "GET",
       url: this.state.server + "/repos",
       contentType: "application/json",
-      success: function(response) {
-        console.log(response)
+      success: (response) => {
+        this.setState({
+          repos: response
+        })
       },
       fail: function(err) {
         console.error(err);

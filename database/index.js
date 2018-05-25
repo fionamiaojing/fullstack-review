@@ -7,10 +7,11 @@ let repoSchema = mongoose.Schema({
   repo_id: String, //id
   owner: String, //owner.login
   url: String, //html_url
-  forks_count: Number //forks_count
+  forks_count: Number, //forks_count
+  updated_at: Date, //updated_at
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Repo = mongoose.model('RepoList', repoSchema);
 
 let save = (repoInfoList, callback) => {
   // TODO: Your code here
@@ -23,21 +24,21 @@ let save = (repoInfoList, callback) => {
       repo_id: info.id,
       owner: info.owner.login,
       url: info.html_url,
-      forks_count: info.forks_count
+      forks_count: info.forks_count,
+      updated_at: info.updated_at
     })
     repo.save()
-      .then(() => console.log('saved'))
   }
   //call res.send()
   callback();
 }
 
-let find = (username) => {
-  Repo.find({owner: username}, function(err, data) {
+let find = (callback) => {
+  Repo.find(function(err, data) {
     if (err) {
       console.log(err)
     } else {
-      
+      callback(data);
     }
   })
 }
