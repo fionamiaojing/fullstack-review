@@ -1,12 +1,12 @@
 import React from 'react';
 
 const RepoListEntry = (props) => (
-    <div className="wrapper">
-        <p className="one">Username: {props.repo.owner}</p>
-        <p className="two" ><a href={props.repo.url}>{props.repo.repo_name} </a></p>
-        <p className="three">Fork_Counts: {props.repo.forks_count}</p>
-        <p className="four">Updated_At: {props.repo.updated_at.split('T')[0]}</p>
-    </div>
+    <tr>
+        <td className="one">{props.repo.owner}</td>
+        <td className="two" ><a href={props.repo.url}>{props.repo.repo_name} </a></td>
+        <td className="three">{props.repo.forks_count}</td>
+        <td className="four">{props.repo.updated_at.split('T')[0]}</td>
+    </tr>
 )
 
 export default RepoListEntry;

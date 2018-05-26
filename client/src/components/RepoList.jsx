@@ -6,13 +6,18 @@ const RepoList = (props) => (
     <h4> Repo List Component </h4>
     There are {props.repos.length} repos.
     <p>{props.new} new repos imported, {props.update} repos updated</p>
-    <div className="wrapper title">
-        <p className="one">Username</p>
-        <p className="two" >Repo Name</p>
-        <p className="three">Fork Counts</p>
-        <p className="four">Updated AT</p>
-    </div>
-    {props.repos.map((repo) => <RepoListEntry key={repo.repo_id}repo={repo}/>)}
+    <table>
+      <tbody>
+          <tr className="title">
+            <td className="one">Username</td>
+            <td className="two" >Repo Name</td>
+            <td className="three">Fork Counts</td>
+            <td className="four">Updated AT</td>
+          </tr>
+        {props.repos.map((repo) => <RepoListEntry key={repo.repo_id}repo={repo}/>)}
+      </tbody>
+    </table>
+    
   </div>
 )
 
