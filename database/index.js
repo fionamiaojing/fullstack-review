@@ -11,9 +11,9 @@ let repoSchema = mongoose.Schema({
   updated_at: Date, //updated_at
 });
 
-let Repo = mongoose.model('RepoList', repoSchema);
+let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (repoInfoList, callback) => {
+let save = (repoInfoList, newR, updateR, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
@@ -30,7 +30,7 @@ let save = (repoInfoList, callback) => {
     repo.save()
   }
   //call res.send()
-  callback();
+  callback(newR, updateR);
 }
 
 let find = (callback) => {
@@ -43,5 +43,6 @@ let find = (callback) => {
   })
 }
 
+module.exports.Repo = Repo;
 module.exports.save = save;
 module.exports.find = find;

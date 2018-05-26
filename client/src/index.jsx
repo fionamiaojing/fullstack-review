@@ -9,7 +9,9 @@ class App extends React.Component {
     super(props);
     this.state = { 
       repos: [],
-      server: "http://localhost:1128"
+      server: "http://localhost:1128",
+      newRepo: 0,
+      updateRepo: 0
     }
   }
 
@@ -18,7 +20,7 @@ class App extends React.Component {
   }
 
   search (term) {
-    console.log(`${term} was searched`);
+    //console.log(`${term} was searched`);
     // TODO
     this.send({'username': term});
 
@@ -31,7 +33,11 @@ class App extends React.Component {
       data: JSON.stringify(data),
       contentType: "application/json",
       success: (response) => {
-        console.log(response)
+        let update = response.split(' ');
+        this.setState({
+          newRepo: update[0],
+          updateRepo: update[1]
+        })
         this.fetch();
       },
       fail: function(err) {
@@ -59,7 +65,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+      <RepoList new={this.state.newRepo} update={this.state.updateRepo} repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
     </div>)
   }
