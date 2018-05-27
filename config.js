@@ -1,3 +1,3 @@
 module.exports = {
-  TOKEN: process.env.GITHUB_API_TOKEN
+  TOKEN: '2b9b71def2756831432426685195aa34f4fbefa2'
 };
