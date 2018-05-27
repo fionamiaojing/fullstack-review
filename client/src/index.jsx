@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = { 
       repos: [],
-      server: "http://localhost:1128",
+      server: "",
       newRepo: 0,
       updateRepo: 0
     }
