@@ -8,3 +8,8 @@ td {
     width: 200px;
     text-align: left;
 }
+
+body {
+    background-color: #ffe8d5;
+    color: #606470;
+}

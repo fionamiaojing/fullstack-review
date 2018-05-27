@@ -19,6 +19,10 @@ class Search extends React.Component {
   search(e) {
     this.props.onSearch(this.state.term);
     // console.log(e.target.parentNode.childList)
+    e.target.parentNode.children[1].value = "";
+  //  this.setState({
+  //    term: ''
+  //  })
   }
 
   render() {

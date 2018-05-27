@@ -30,6 +30,7 @@ let save = (repoInfoList, newR, updateR, callback) => {
     repo.save()
   }
   //call res.send()
+
   callback(newR, updateR);
 }
 
@@ -43,6 +44,23 @@ let find = (callback) => {
   })
 }
 
-module.exports.Repo = Repo;
-module.exports.save = save;
-module.exports.find = find;
+//check how to mapping two tables in mongoose
+//deepPopulate
+let contributorSchema = mongoose.Schema({
+    repo_id: String, //id
+    repo_name: String, // reponame
+    owner: String, // username
+    contributor: [String] //login name of contributors
+})
+
+let contributor = mongoose.model('contributors', contributorSchema)
+
+let saveCon = ({username, reponame, repoid, contributors}, callback) => {
+
+}
+
+module.exports ={
+  Repo: Repo,
+  save: save,
+  find: find
+};

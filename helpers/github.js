@@ -58,4 +58,21 @@ let checkDuplicate = (oldDataArray, newData) => {
   return "No Match";
 }
 
+// https://api.github.com/repos/octocat/Spoon-Knife/contributors
+let getContributorByUserAndRepo = (username, repo) => {
+  let options = {
+    url: `https://api.github.com/repos/${username}/${repo}/contributors`,
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': `token ${config.TOKEN}`
+    }
+  };
+
+  request.get(options, function(err, response, body) {
+    let contributors = JSON.parse(body);
+    
+  })
+
+}
+
 module.exports.getReposByUsername = getReposByUsername;
